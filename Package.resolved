@@ -1,0 +1,16 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "BabyNet",
+        "repositoryURL": "https://github.com/4440449/BabyNet.git",
+        "state": {
+          "branch": "master",
+          "revision": "6010175c4223c35b82a778725c920e6695ef6fac",
+          "version": null
+        }
+      }
+    ]
+  },
+  "version": 1
+}
