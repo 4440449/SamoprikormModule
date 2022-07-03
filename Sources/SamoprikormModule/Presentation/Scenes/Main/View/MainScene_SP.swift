@@ -30,6 +30,7 @@ struct MainSceneView_SP: View {
     //MARK: - State
     @State private var txtField = ""
     @State private var isDisplayingErrorAlert = false
+    @Environment(\.presentationMode) var presentationMode
     
     
     //MARK: - Body
@@ -80,6 +81,17 @@ struct MainSceneView_SP: View {
                 }
             }
             .navigationTitle("Продукты")
+            .toolbar {
+                ToolbarItem(placement: .navigationBarLeading) {
+                    Button {
+                        print(presentationMode)
+                        presentationMode.wrappedValue.dismiss()
+                    } label: {
+                        Image(systemName: "chevron.down")
+                            .foregroundColor(.primary)
+                    }
+                }
+            }
         }
         .navigationViewStyle(.stack)
         .searchable(text: $txtField,
