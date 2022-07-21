@@ -22,7 +22,6 @@ final class Store_SP: ObservableObject {
          reducer: Reducer_SP) {
         self.state = initialState ?? State_SP(cards: nil)
         self.reducer = reducer
-        print("INIT Store_SP")
     }
     
     
@@ -37,6 +36,6 @@ final class Store_SP: ObservableObject {
     
     
     deinit {
-        print("DEINIT Store_SP")
+//        print("DEINIT Store_SP")
     }
 }

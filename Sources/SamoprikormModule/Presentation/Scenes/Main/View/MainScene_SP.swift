@@ -17,25 +17,23 @@ struct MainSceneView_SP: View {
          actionPool: ActionPool_SP) {
         self.store = store
         self.actionPool = actionPool
-        UINavigationBar.appearance().largeTitleTextAttributes = [.font : UIFont(name: "Montserrat-Black", size: 38)!]
-        UIBarButtonItem.appearance(whenContainedInInstancesOf: [UISearchBar.self]).title = "Отмена"
         actionPool.dispatch(params: .initialLoading)
-        print("MainSceneView INIT")
     }
     
     //MARK: - Dependencies
+    
     private let actionPool: ActionPool_SP
     @ObservedObject private var store: Store_SP
     
     //MARK: - State
-    @State private var txtField = ""
+    
     @State private var isDisplayingErrorAlert = false
     @Environment(\.presentationMode) var presentationMode
     
-    
     //MARK: - Body
+    
     var body: some View {
-        NavigationView {
+        //        NavigationView {
             ZStack {
                 Color("background", bundle: nil)
                     .ignoresSafeArea(.all, edges: .all)
@@ -60,8 +58,8 @@ struct MainSceneView_SP: View {
                                 }
                             }
                         }
-                        .frame(height: UIScreen.main.bounds.height*0.6,
-                               alignment: .center)
+//                        .frame(height: UIScreen.main.bounds.height*0.6,
+//                               alignment: .center)
                         VStack {
                             ForEach(store.state.cards.filter({
                                 $0.title.contains(store.state.searchFieldText.capitalized)
@@ -80,27 +78,27 @@ struct MainSceneView_SP: View {
                     }
                 }
             }
-            .navigationTitle("Продукты")
-            .toolbar {
-                ToolbarItem(placement: .navigationBarLeading) {
-                    Button {
-                        print(presentationMode)
-                        presentationMode.wrappedValue.dismiss()
-                    } label: {
-                        Image(systemName: "chevron.down")
-                            .foregroundColor(.primary)
-                    }
-                }
-            }
-        }
-        .navigationViewStyle(.stack)
-        .searchable(text: $txtField,
-                    placement: .navigationBarDrawer(displayMode: .always),
-                    prompt: "Поиск")
-        .onChange(of: txtField,
-                  perform: { newTxt in
-            actionPool.dispatch(params: .search(newTxt))
-        })
+//            .navigationTitle("Продукты")
+//            .toolbar {
+//                ToolbarItem(placement: .navigationBarLeading) {
+//                    Button {
+//                        presentationMode.wrappedValue.dismiss()
+//                    } label: {
+//                        Image(systemName: "chevron.down")
+//                            .foregroundColor(.primary)
+//                    }
+//                }
+//            }
+//        }
+//        }
+//        .navigationViewStyle(.stack)
+//        .searchable(text: $txtField,
+//                    placement: .navigationBarDrawer(displayMode: .always),
+//                    prompt: "Искать продукт")
+//        .onChange(of: txtField,
+//                  perform: { newTxt in
+//            actionPool.dispatch(params: .search(newTxt))
+//        })
         .alert(isPresented: $isDisplayingErrorAlert) {
             Alert(title: Text("Ошибка"),
                   message: Text(store.state.errorMessage),

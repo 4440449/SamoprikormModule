@@ -20,6 +20,12 @@ public struct MainSceneConfigurator_SP {
         let repository = ProductCardsRepository_SP(network: network)
         let errorHandler = ErrorHandler_SP()
         let actionPool = ActionPool_SP(store: storeGlobal, productCardRepository: repository, errorHandler: errorHandler)
-        return MainSceneView_SP(store: storeGlobal, actionPool: actionPool)
+        let view = MainSceneView_SP(store: storeGlobal,
+                                    actionPool: actionPool)
+        let navigationView = MainSceneNavigationView_SP(contentView: view,
+                                                        actionPool: actionPool)
+        return navigationView.ignoresSafeArea()
+//        return MainSceneView_SP(store: storeGlobal,
+//                                actionPool: actionPool)
     }
 }

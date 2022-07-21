@@ -10,7 +10,8 @@ import WebKit
 
 // MARK: - WKWebView
 
-final class DetailWKWebView_SP: WKWebView, ObservableObject {
+final class DetailWKWebView_SP: WKWebView,
+                                ObservableObject {
     
     // MARK: - Init
     init(frame: CGRect,
@@ -25,9 +26,9 @@ final class DetailWKWebView_SP: WKWebView, ObservableObject {
         self.scrollView.backgroundColor = .clear
         self.addObserver(self,
                          forKeyPath: #keyPath(WKWebView.isLoading),
-                         options:.new,
+                         options: .new,
                          context: nil)
-        print("DetailSceneWebView INIT")
+//        print("DetailSceneWebView init")
     }
     
     required init?(coder: NSCoder) {
@@ -36,6 +37,7 @@ final class DetailWKWebView_SP: WKWebView, ObservableObject {
     
     // MARK: - State
     @Published var loadingState = false
+    
     
     // MARK: - KVO isLoading state
     override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
@@ -46,7 +48,7 @@ final class DetailWKWebView_SP: WKWebView, ObservableObject {
     }
     
     deinit {
-        print("DetailSceneWebView DEINIT")
+//        print("DetailSceneWebView DEINIT")
     }
     
 }
@@ -64,7 +66,6 @@ struct DetailSceneWebView_SP: UIViewRepresentable {
          wkWebWiev: WKWebView) {
         self.urlEndPoint = urlEndPoint
         self.wkWebWiev = wkWebWiev
-        print("DetailSceneWebView_SP init")
     }
     
     func makeUIView(context: Context) -> WKWebView {
@@ -72,30 +73,9 @@ struct DetailSceneWebView_SP: UIViewRepresentable {
     }
     
     func updateUIView(_ webView: WKWebView, context: Context) {
-        print("https://mterpugova.notion.site/\(urlEndPoint)")
         if let requestUrl = URL(string: "https://mterpugova.notion.site/\(urlEndPoint)") {
             webView.load(URLRequest(url: requestUrl))
         }
     }
+    
 }
-
-
-
-
-
-
-//final class WebCacheCleaner {
-//
-//    class func clean() {
-////        HTTPCookieStorage.shared.removeCookies(since: Date.distantPast)
-////        print("[WebCacheCleaner] All cookies deleted")
-//
-//        WKWebsiteDataStore.default().fetchDataRecords(ofTypes: WKWebsiteDataStore.allWebsiteDataTypes()) { records in
-//            records.forEach { record in
-//                WKWebsiteDataStore.default().removeData(ofTypes: record.dataTypes, for: [record], completionHandler: {})
-//                print("[WebCacheCleaner] Record \(record) deleted")
-//            }
-//        }
-//    }
-//
-//}

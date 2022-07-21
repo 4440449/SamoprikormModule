@@ -31,6 +31,7 @@ struct CardView_SP: View {
                 ZStack {
                     Image(uiImage: productCard.image ?? UIImage())
                         .resizable()
+                        .frame(height: UIScreen.main.bounds.height * 0.38)
                     if productCard.imageIsLoading {
                         ProgressView()
                             .progressViewStyle(.circular)
@@ -69,7 +70,6 @@ struct CardView_SP: View {
             }
             .cornerRadius(14)
         }
-        .frame(height: UIScreen.main.bounds.height * 0.485)
         .padding(.all, 2)
         .background(Color("cardBorderSystemColor3", bundle: nil))
         .cornerRadius(15)

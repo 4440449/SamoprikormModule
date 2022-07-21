@@ -11,7 +11,7 @@ import UIKit
 
 //MARK: - Params
 
-enum ActionParams_SP {
+enum ActionViewParams_SP {
     case initialLoading
     case imageLoading(_ card: ProductCard_SP)
     case search(_ text: String)
@@ -75,8 +75,11 @@ final class ActionPool_SP {
     private let productCardRepository: ProductCardGateway_SP
     private let errorHandler: ErrorHandler_SP
     
-    //    private var tasks = [Task<Void, Never>]() { willSet { print("tasks count == \(tasks.count)")} }
-    //    private var tasks: TaskGroup<Any>
+//    private var tasks = [Task<Void, Never>]() {
+//        willSet {
+//            print("tasks count == \(tasks.count)")
+//        }
+//    }
     
     init(store: Store_SP,
          productCardRepository: ProductCardGateway_SP,
@@ -84,10 +87,9 @@ final class ActionPool_SP {
         self.store = store
         self.productCardRepository = productCardRepository
         self.errorHandler = errorHandler
-        print("INIT ActionPool_SP")
     }
     
-    func dispatch(params: ActionParams_SP) {
+    func dispatch(params: ActionViewParams_SP) {
         switch params {
             
         case .initialLoading:
@@ -123,7 +125,7 @@ final class ActionPool_SP {
             let _ = Task {
                 do {
                     let data = try await productCardRepository.fetchImage(for: card)
-//                    let testData = Data()
+                    //                    let testData = Data()
                     guard let uiImage = UIImage(data: data) else {
                         throw ActionError_SP.imageConvert(description: "received data --> \(data.debugDescription) <-- cannot be convert to UIImage")
                     }
@@ -138,17 +140,17 @@ final class ActionPool_SP {
                 store.dispatch(action: action)
             }
             //            }
-            //            tasks.append(task)
+//            tasks.append(task)
         case .hideAlert:
             let emptyErrorMessageAction = Action_SP.sendErrorMessage(.init(description: ""))
             store.dispatch(action: emptyErrorMessageAction)
         }
     }
     
-   
+    
     
     deinit {
-        print("DEINIT ActionPool_SP")
+//        print("DEINIT ActionPool_SP")
     }
 }
 

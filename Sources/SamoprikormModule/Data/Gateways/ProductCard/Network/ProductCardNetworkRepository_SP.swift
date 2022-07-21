@@ -64,26 +64,4 @@ final class ProductCardsNetworkRepository_SP: ProductCardsNetworkRepositoryProto
                               responseCallback: callback)
         }
     
-    
-    
-    
-//https://sruvmguuadrikxjglriw.supabase.co/storage/v1/object/sign/images/tomato.png?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJpbWFnZXMvdG9tYXRvLnBuZyIsImlhdCI6MTY1NDg5NjY1NSwiZXhwIjoxOTcwMjU2NjU1fQ.Y9vVD4PytgGWdCUiBEwMkat6ptbz7e6KPn_dfPRAEm8
-//
-//        //https://sruvmguuadrikxjglriw.supabase.co/storage/v1/object/public/imagesfree/potato.png
-//        let url = BabyNetURL(scheme: .https,
-//                             host: "sruvmguuadrikxjglriw.supabase.co",
-//                             path: "/storage/v1/object/public/imagesfree/potato.png",
-//                             endPoint: nil) //["id" : "eq.9c9513b81bdf4b6dbdcb7e62c3124d00"]
-//        let request = BabyNetRequest(method: .get,
-//                                     header: ["" : ""],
-//                                     body: nil)
-//        let session = BabyNetSession.default
-//        let decoderType = Data.self
-//        return client.connect(url: url,
-//                              request: request,
-//                              session: session,
-//                              decoderType: decoderType,
-//                              callback: callback)
-//    }
-    
 }

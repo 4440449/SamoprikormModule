@@ -56,14 +56,3 @@ struct ProductCardNetworkEntity_SP: Decodable, DomainConvertable {
        }
 }
 
-
-//extension Array: DomainRepresentable where Element == ProductCardNetworkEntity_SP {
-//
-//    public func parseToDomain() throws -> [ProductCard_SP] {
-//         var domainEntityArr = [ProductCard_SP]()
-//         try self.forEach { networkEntity in
-//             domainEntityArr.append(try networkEntity.parseToDomain())
-//         }
-//        return domainEntityArr
-//    }
-//}

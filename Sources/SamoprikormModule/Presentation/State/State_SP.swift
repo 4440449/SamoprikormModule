@@ -9,7 +9,7 @@
 struct State_SP {
     var searchFieldText = ""
     var cards = [ProductCard_SP]()
-    var errorMessage = "" { willSet { print(newValue)} }
+    var errorMessage = ""
     var isLoading = false
     var needToReloading = false
     
